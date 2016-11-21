@@ -2599,6 +2599,15 @@ ul.region-link {
 
       color: #fff;
       background-color: rgba(0, 0, 0, .6);
+      a {
+        font-family: pt_sans;
+        font-size: 14px;
+        font-weight: normal;
+
+        text-decoration: none;
+
+        color: #fff;
+      }
     }
   }
 }

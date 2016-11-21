@@ -17,13 +17,16 @@
 
       <?php the_tags( __( 'Tags: ', 'wpeasy' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
 
-      <p><?php _e( 'Categorised in: ', 'wpeasy' ); the_category(', '); // Separated by commas ?></p>
+      <p><?php the_category(', '); ?></p>
 
       <p><?php _e( 'This post was written by ', 'wpeasy' ); the_author(); ?></p>
 
       <?php edit_post_link(); ?>
 
+      <?php wpb_set_post_views(get_the_ID()); ?>
+
       <?php comments_template(); ?>
+
 
     </article>
   <?php endwhile; else: ?>

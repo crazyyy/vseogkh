@@ -15,7 +15,7 @@
 
     <span class="date"><?php the_time('j F Y'); ?> <span><?php the_time('G:i'); ?></span></span>
     <span class="author"><?php _e( 'Published by', 'wpeasy' ); ?> <?php the_author_posts_link(); ?></span>
-    <span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'wpeasy' ), __( '1 Comment', 'wpeasy' ), __( '% Comments', 'wpeasy' )); ?></span><!-- /post details -->
+    <span class="comments"><?php comments_popup_link( '0', '1', '%'); ?></span><!-- /post details -->
 
     <?php wpeExcerpt('wpeExcerpt40'); ?>
 
