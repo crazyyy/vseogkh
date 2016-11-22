@@ -466,6 +466,10 @@ aside {
 
   height: 56px;
   margin: 0 0 0 203px;
+  padding: 0;
+  li {
+    display: inline-block;
+  }
   a {
     font-size: 17px;
     line-height: 35px;

@@ -6,19 +6,10 @@
   <footer>
     <div class="footer-menu">
       <div class="wrapper">
-        <a class="logo-img" href="http://vseogkh.ru/77">
+        <a class="logo-img" href="/">
           <img src="<?php echo get_template_directory_uri(); ?>/img/logo_bottom.svg">
         </a>
-        <div class="menu-top region-menu">
-          <a href="http://vseogkh.ru/77/news" class="">
-            Новости    </a>
-          <a href="http://vseogkh.ru/77/projects" class="">
-            Спецпроекты    </a>
-          <a href="http://vseogkh.ru/77/realty" class="">
-            Недвижимость    </a>
-          <a href="http://vseogkh.ru/77/catalog" class="">
-            Справочник    </a>
-        </div>
+        <?php wpeFootNav(); ?>
         <div class="search-bottom">
           <div class="search-input"></div>
           <div class="search-btn"></div>
@@ -30,23 +21,23 @@
         <div class="cols">
           <div class="col col-1">
             <h3>vseogkh.ru</h3>
-            <a href="http://vseogkh.ru/77/st/certificate"><span style="color: #999; line-height: 1.2;">Свидетельство о регистрации СМИ<br>ЭЛ № ФС 77 - 67037</span></a>
+            <a href="#"><span style="color: #999; line-height: 1.2;">Свидетельство о регистрации СМИ<br>ЭЛ № ФС 77 - 67037</span></a>
             <span style="color: #666; line-height: 1.2; font-size: 12px; padding: 12px 20px 0 0;">Мнение редакции может не совпадать с мнением отдельных авторов.</span>
             <span style="color: #666; line-height: 1.2; font-size: 12px; padding: 6px 20px 0 0;">При использовании материалов сайта ссылка обязательна.</span>
           </div>
           <div class="col col-2">
             <h3>Всё о ЖКХ</h3>
-            <a href="http://vseogkh.ru/77/info/about">О проекте</a>
-            <a href="http://vseogkh.ru/77/info/advertising">Размещение рекламы</a>
-            <a href="http://vseogkh.ru/77/info/contacts">Контакты</a>
-            <a href="http://vseogkh.ru/77/info/termsofservice">Пользовательское соглашение</a>
+            <a href="#">О проекте</a>
+            <a href="#">Размещение рекламы</a>
+            <a href="#">Контакты</a>
+            <a href="#">Пользовательское соглашение</a>
           </div>
           <div class="col col-3">
             <h3>Обратная связь</h3>
-            <a href="http://vseogkh.ru/77/feedback" rel="modal:open">Обратная связь</a>
-            <a href="http://vseogkh.ru/77/feedback/sendnews" rel="modal:open">Отправить новость</a>
-            <a href="http://vseogkh.ru/77/feedback/support" rel="modal:open">Техподдержка</a>
-            <a href="http://vseogkh.ru/77/info/vacancies">Вакансии</a>
+            <a href="#" rel="modal:open">Обратная связь</a>
+            <a href="#" rel="modal:open">Отправить новость</a>
+            <a href="#" rel="modal:open">Техподдержка</a>
+            <a href="#">Вакансии</a>
           </div>
           <div class="col col-4">
             <h3>Контакты</h3>

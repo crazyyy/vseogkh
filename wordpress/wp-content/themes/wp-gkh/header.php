@@ -39,16 +39,7 @@
           <a class="logo-img" href="http://vseogkh.ru/77">
             <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg">
           </a>
-          <div class="menu-top region-menu">
-            <a href="http://vseogkh.ru/77/news" class="">
-            Новости    </a>
-            <a href="http://vseogkh.ru/77/projects" class="">
-            Спецпроекты    </a>
-            <a href="http://vseogkh.ru/77/realty" class="">
-            Недвижимость    </a>
-            <a href="http://vseogkh.ru/77/catalog" class="">
-            Справочник    </a>
-          </div>
+          <?php wpeHeadNav(); ?>
           <noindex><a href="http://vseogkh.ru/77/reg" class="btn reg f-rgt btn-red" rel="modal:open">Присоединяйтесь!</a></noindex>
         </div>
       </div>

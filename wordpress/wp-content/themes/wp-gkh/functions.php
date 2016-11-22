@@ -108,7 +108,7 @@ function wpeHeadNav() {
     'after'           => '',
     'link_before'     => '',
     'link_after'      => '',
-    'items_wrap'      => '<ul class="headnav">%3$s</ul>',
+    'items_wrap'      => '<ul class="menu-top region-menu">%3$s</ul>',
     'depth'           => 0,
     'walker'          => ''
     )
@@ -131,7 +131,7 @@ function wpeFootNav() {
     'after'           => '',
     'link_before'     => '',
     'link_after'      => '',
-    'items_wrap'      => '<ul class="footernav">%3$s</ul>',
+    'items_wrap'      => '<ul class="menu-top region-menu">%3$s</ul>',
     'depth'           => 0,
     'walker'          => ''
     )
@@ -655,43 +655,30 @@ function disable_emojicons_tinymce( $plugins ) {
   }
 }
 
-
-function wpb_set_post_views($postID) {
-  $count_key = 'wpb_post_views_count';
-  $count = get_post_meta($postID, $count_key, true);
-  if($count==''){
-    $count = 0;
-    delete_post_meta($postID, $count_key);
-    add_post_meta($postID, $count_key, '0');
-  }else{
-    $count++;
-    update_post_meta($postID, $count_key, $count);
-  }
+function getPostViews($postID){
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0";
+    }
+    return $count.'';
 }
-//To keep the count accurate, lets get rid of prefetching
+function setPostViews($postID) {
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+// Remove issues with prefetching adding extra views
 remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
-
-function wpb_track_post_views ($post_id) {
-  if ( !is_single() ) return;
-  if ( empty ( $post_id) ) {
-    global $post;
-    $post_id = $post->ID;
-  }
-  wpb_set_post_views($post_id);
-}
-add_action( 'wp_head', 'wpb_track_post_views');
-
-function wpb_get_post_views($postID){
-  $count_key = 'wpb_post_views_count';
-  $count = get_post_meta($postID, $count_key, true);
-  if($count==''){
-    delete_post_meta($postID, $count_key);
-    add_post_meta($postID, $count_key, '0');
-    return "0";
-  }
-  return $count;
-}
-
 
 
 ?>

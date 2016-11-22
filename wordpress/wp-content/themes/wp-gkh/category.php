@@ -25,7 +25,7 @@
                 <div class="title"><?php the_title(); ?></div>
               </a>
               <div class="news-info">
-                <div class="views"><?php wpb_get_post_views(get_the_ID()); ?></div>
+                <div class="views"><?php echo getPostViews(get_the_ID()); ?></div>
                 <div class="clock"><?php the_time('j.n.Y'); ?> в <?php the_time('G:i'); ?></div>
               </div>
             </div>
@@ -42,7 +42,7 @@
                 <div class="rcont">
                   <div class="title"><?php the_title(); ?></div>
                   <div class="news-info">
-                    <div class="views"><?php wpb_get_post_views(get_the_ID()); ?></div>
+                    <div class="views"><?php echo getPostViews(get_the_ID()); ?></div>
                     <div class="comments">0</div>
                     <div class="clock"><?php the_time('j.n.Y'); ?> в <?php the_time('G:i'); ?></div>
                   </div>

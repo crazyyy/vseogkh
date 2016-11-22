@@ -29,7 +29,7 @@
                 <div class="title"><?php the_title(); ?></div>
               </a>
               <div class="news-info">
-                <div class="views"><?php wpb_get_post_views(get_the_ID()); ?></div>
+                <div class="views"><?php echo getPostViews(get_the_ID()); ?></div>
                 <div class="comments"><?php comments_number( '0', '1', '%'); ?></div>
                 <div class="clock"><?php the_time('j.n'); ?> в <?php the_time('G:i'); ?></div>
               </div>
@@ -62,7 +62,7 @@
                         <div class="category"><?php the_category(', '); ?></div>
                       </a>
                       <div class="news-info">
-                        <div class="views"><?php wpb_get_post_views(get_the_ID()); ?></div>
+                        <div class="views"><?php echo getPostViews(get_the_ID()); ?></div>
                         <div class="comments"><?php comments_number( '0', '1', '%'); ?></div>
                         <div class="clock"><?php the_time('j.n'); ?> в <?php the_time('G:i'); ?></div>
                       </div>
@@ -95,7 +95,7 @@
                         <div class="category"><?php the_category(', '); ?></div>
                       </a>
                       <div class="news-info">
-                        <div class="views"><?php wpb_get_post_views(get_the_ID()); ?></div>
+                        <div class="views"><?php echo getPostViews(get_the_ID()); ?></div>
                         <div class="comments"><?php comments_number( '0', '1', '%'); ?></div>
                         <div class="clock"><?php the_time('j.n'); ?> в <?php the_time('G:i'); ?></div>
                       </div>

@@ -22,7 +22,7 @@
               </div>
             </div>
           </div>
-          <div class="views icn"><?php wpb_get_post_views(get_the_ID()); ?></div>
+          <div class="views icn"><?php echo getPostViews(get_the_ID()); ?></div>
           <div class="comments icn"><?php comments_number( '0', '1', '%'); ?></div>
           <a href="<?php the_permalink(); ?>?print" class="print icn" title="Версия для печати" target="_blank">Версия для печати</a>
           <?php if (get_field('fotosource')) { ?>
@@ -37,12 +37,12 @@
         <?php } ?>
         <div class="a-fulltxt">
           <?php the_post(); the_content(); ?>
+          <?php setPostViews(get_the_ID()); ?>
         </div>
       </div>
       <div class="a-tags">
         <?php the_tags('Теги:', ', ', ''); ?>
       </div>
-
 
     <div class="subscr-social">
       <div class="subscribe">
@@ -91,7 +91,7 @@
             <div class="title"><?php the_title(); ?></div>
           </a>
           <div class="news-info">
-            <div class="views"><?php wpb_get_post_views(get_the_ID()); ?></div>
+            <div class="views"><?php echo getPostViews(get_the_ID()); ?></div>
             <div class="clock"><?php the_time('j.n.Y'); ?> в <?php the_time('G:i'); ?></div>
           </div>
         </div>
