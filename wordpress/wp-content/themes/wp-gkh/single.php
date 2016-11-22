@@ -1,40 +1,106 @@
 <?php get_header(); ?>
-  <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-      <h1 class="single-title inner-title"><?php the_title(); ?></h1>
-      <?php if ( has_post_thumbnail()) :?>
-        <a class="single-thumb" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-          <?php the_post_thumbnail(); // Fullsize image for the single post ?>
-        </a>
-      <?php endif; ?><!-- /post thumbnail -->
+  <div class="content left">
+    <?php if (function_exists('easy_breadcrumbs')) easy_breadcrumbs(); ?>
 
-      <span class="date"><?php the_time('d F Y'); ?> <?php the_time('H:i'); ?></span>
-      <span class="author"><?php _e( 'Published by', 'wpeasy' ); ?> <?php the_author_posts_link(); ?></span>
-      <span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'wpeasy' ), __( '1 Comment', 'wpeasy' ), __( '% Comments', 'wpeasy' )); ?></span><!-- /post details -->
+      <div class="article">
+        <h1><?php the_title(); ?></h1>
+        <div class="a-image">
+          <div class="a-date"><?php the_time('j.n.Y'); ?> в <?php the_time('G:i'); ?></div>
+          <?php if ( has_post_thumbnail()) :?>
+            <a class="single-thumb" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+              <?php the_post_thumbnail();  ?>
+            </a>
+          <?php endif; ?><!-- /post thumbnail -->
+        </div>
+        <div class="rbtns">
+          <div class="soc">
+            <div class="title">Поделитесь новостью:</div>
+            <div class="socbuttons">
+              <div class="socbuttons-wrp">
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+          <div class="views icn"><?php wpb_get_post_views(get_the_ID()); ?></div>
+          <div class="comments icn"><?php comments_number( '0', '1', '%'); ?></div>
+          <a href="<?php the_permalink(); ?>?print" class="print icn" title="Версия для печати" target="_blank">Версия для печати</a>
+          <?php if (get_field('fotosource')) { ?>
+            <div class="foto"><?php the_field('fotosource') ?></div>
+          <?php } ?>
+        </div>
+        <div class="clear"></div>
+        <?php if (get_field('description')) { ?>
+          <div class="a-introtxt">
+            <?php the_field('description') ?>
+          </div>
+        <?php } ?>
+        <div class="a-fulltxt">
+          <?php the_post(); the_content(); ?>
+        </div>
+      </div>
+      <div class="a-tags">
+        <?php the_tags('Теги:', ', ', ''); ?>
+      </div>
 
-      <?php the_content(); ?>
 
-      <?php the_tags( __( 'Tags: ', 'wpeasy' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
+    <div class="subscr-social">
+      <div class="subscribe">
+        <div class="txt">Не пропустите важные новости!</div>
+        <a href="#" class="btn btn-red" rel="modal:open">Подпишитесь</a>
+      </div>
+      <div class="social">
+      </div>
+    </div>
 
-      <p><?php the_category(', '); ?></p>
+    <h3 class="comments-head nocomments">Комментарии</h3>
+    <div class="mod comments list" style="display:none;">
+      <div class="modwrap">
+        <div class="comments-items">
+        </div>
+      </div>
+    </div>
 
-      <p><?php _e( 'This post was written by ', 'wpeasy' ); the_author(); ?></p>
+    <div class="mod comments addform" id="addform">
+      <div class="modwrap">
+        <h3>Есть мнение? Добавьте комментарий:</h3>
+        <form>
+          <div class="authorize"><a href="#" class="btn btn-red btn-send loginform-link" rel="modal:open">Авторизуйтесь чтобы добавить комментарий</a></div>
+        </form>
+      </div>
+    </div>
 
-      <?php edit_post_link(); ?>
 
-      <?php wpb_set_post_views(get_the_ID()); ?>
+    <div class="mod news">
+      <div class="head">
+        <h3><a href="#">Другие новости раздела</a></h3>
+      </div>
+      <div class="modwrap">
 
-      <?php comments_template(); ?>
+        <?php query_posts("showposts=3&cat=1"); ?>
+        <?php $i=1; if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+        <div class="itm itm-<?php echo $i; ?>">
+          <a href="<?php the_permalink(); ?>">
+            <div class="foto">
+              <?php if ( has_post_thumbnail()) :
+                the_post_thumbnail('medium');
+              else: ?>
+                <img src="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+              <?php endif; ?>
+            </div>
+            <div class="title"><?php the_title(); ?></div>
+          </a>
+          <div class="news-info">
+            <div class="views"><?php wpb_get_post_views(get_the_ID()); ?></div>
+            <div class="clock"><?php the_time('j.n.Y'); ?> в <?php the_time('G:i'); ?></div>
+          </div>
+        </div>
+        <?php $i++; endwhile; endif; ?>
+        <?php wp_reset_query(); ?>
 
+      </div>
+    </div>
+  </div>
 
-    </article>
-  <?php endwhile; else: ?>
-    <article>
-
-      <h2 class="page-title inner-title"><?php _e( 'Sorry, nothing to display.', 'wpeasy' ); ?></h2>
-
-    </article>
-  <?php endif; ?>
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

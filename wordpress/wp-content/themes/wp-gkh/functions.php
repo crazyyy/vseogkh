@@ -154,7 +154,7 @@ function wpeSideNav() {
     'after'           => '',
     'link_before'     => '',
     'link_after'      => '',
-    'items_wrap'      => '<ul class="sidebarnav">%3$s</ul>',
+    'items_wrap'      => '<ul class="modwrap">%3$s</ul>',
     'depth'           => 0,
     'walker'          => ''
     )
@@ -225,13 +225,13 @@ function wpeExcerpt($length_callback = '', $more_callback = '') {
 
 //  Custom View Article link to Post
 //  RU: Добавляем "Читать дальше" к обрезанным записям
-/*
+
 function html5_blank_view_article($more) {
   global $post;
-  return '... <!-- noindex --><a rel="nofollow" class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'wpeasy') . '</a><!-- /noindex -->';
+  return '...';
 }
 add_filter('excerpt_more', 'html5_blank_view_article'); // Add 'View Article' button instead of [...] for Excerpts
-*/
+
 // Remove the <div> surrounding the dynamic navigation to cleanup markup
 add_filter('wp_nav_menu_args', 'my_wp_nav_menu_args'); // Remove surrounding <div> from WP Navigation
 function my_wp_nav_menu_args($args = '') {
@@ -280,7 +280,9 @@ function html5wp_pagination() {
     'base' => str_replace($big, '%#%', get_pagenum_link($big)),
     'format' => '?paged=%#%',
     'current' => max(1, get_query_var('paged')),
-    'total' => $wp_query->max_num_pages
+    'total' => $wp_query->max_num_pages,
+    'prev_text'          => '&lt;',
+    'next_text'          => '&gt;',
   ));
 }
 
@@ -425,7 +427,7 @@ function easy_breadcrumbs() {
   $show_on_home = 0; // 1 - показывать "хлебные крошки" на главной странице, 0 - не показывать
   $show_home_link = 1; // 1 - показывать ссылку "Главная", 0 - не показывать
   $show_title = 1; // 1 - показывать подсказку (title) для ссылок, 0 - не показывать
-  $delimiter = ' &raquo; '; // разделить между "крошками"
+  $delimiter = '<span class="sep"></span>'; // разделить между "крошками"
   $before = '<span class="current">'; // тег перед текущей "крошкой"
   $after = '</span>'; // тег после текущей "крошки"
   /* === КОНЕЦ ОПЦИЙ === */
@@ -441,11 +443,11 @@ function easy_breadcrumbs() {
 
   if (is_home() || is_front_page()) {
 
-    if ($show_on_home == 1) echo '<div class="breadcrumbs"><a href="' . $home_link . '">' . $text['home'] . '</a></div>';
+    if ($show_on_home == 1) echo '<div class="topbar breadcrumbs"><a href="' . $home_link . '">' . $text['home'] . '</a></div>';
 
   } else {
 
-    echo '<div class="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">';
+    echo '<div class="topbar breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">';
     if ($show_home_link == 1) {
         echo '<a href="' . $home_link . '" rel="v:url" property="v:title">' . $text['home'] . '</a>';
         if ($frontpage_id == 0 || $parent_id != $frontpage_id) echo $delimiter;

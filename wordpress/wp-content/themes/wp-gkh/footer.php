@@ -73,6 +73,123 @@
   </div>
 
   <?php wp_footer(); ?>
+      <script>
+        $('.btn-allcomments').click(function() {
+          $('.other-comments').toggle();
+          $('.btn-allcomments').toggle();
+        });
+      </script>
+      <script>
+        $(function() {
+          $("a[href$='.jpg'],a[href$='.JPG'],a[href$='.png'],a[href$='.gif']").attr('rel', 'gallery').fancybox({
+            openEffect: 'elastic',
+            closeEffect: 'elastic',
+            padding: 5
+          });
+
+          $.ajax({
+            url: '/news',
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+              'task': 'get_fotogallery',
+              'folder': $('#fotogallery').attr('data-folder'),
+              'img': $('#fotogallery').attr('data-img')
+            },
+            success: function(data) {
+              $('#fotogallery').html(data['html']);
+            }
+          });
+        });
+      </script>
+
+<script type="text/javascript">
+        if (typeof Calendar != "undefined") {
+
+          Calendar.LANG("ru", "русский", {
+            fdow: 1, // first day of week for this locale; 0 = Sunday, 1 = Monday, etc.
+            goToday: "Сегодня",
+            today: "Сегодня", // appears in bottom bar
+            wk: "нед",
+            weekend: "0,6", // 0 = Sunday, 1 = Monday, etc.
+            AM: "am",
+            PM: "pm",
+            mn: ["Январь",
+              "Февраль",
+              "Март",
+              "Апрель",
+              "Май",
+              "Июнь",
+              "Июль",
+              "Август",
+              "Сентябрь",
+              "Октябрь",
+              "Ноябрь",
+              "Декабрь"
+            ],
+
+            smn: ["Январь",
+              "Февраль",
+              "Март",
+              "Апрель",
+              "Май",
+              "Июнь",
+              "Июль",
+              "Август",
+              "Сентябрь",
+              "Октябрь",
+              "Ноябрь",
+              "Декабрь"
+            ],
+
+            dn: ["воскресенье",
+              "понедельник",
+              "вторник",
+              "среда",
+              "четверг",
+              "пятница",
+              "суббота",
+              "воскресенье"
+            ],
+
+            sdn: ["ВС",
+              "ПН",
+              "ВТ",
+              "СР",
+              "ЧТ",
+              "ПТ",
+              "СБ",
+              "ВС"
+            ]
+          });
+          $(function() {
+            if (typeof currentDate == "undefined") {
+              date = new Date();
+            } else {
+              date = new Date(currentDate);
+            }
+            var LEFT_CAL = Calendar.setup({
+              cont: "calendar-cont",
+              weekNumbers: false,
+              selectionType: Calendar.SEL_SINGLE,
+              selection: Calendar.dateToInt(date), //Calendar.dateToInt(currentDate),
+              animation: false,
+              onSelect: function() {
+                  var date = this.selection.sel[0];
+                  date = Calendar.intToDate(date);
+                  date = Calendar.printDate(date, "%Y-%m-%d");
+                  location.href = "/77/news/date/" + date;
+                }
+                // titleFormat: "%B %Y"
+            });
+            LEFT_CAL.setLanguage("ru");
+            if (typeof currentDate != "undefined") {
+              LEFT_CAL.moveTo(currentDate);
+            }
+          });
+        }
+      </script>
+
   <script src="<?php echo get_template_directory_uri(); ?>/js/fancybox.js"></script>
   <script type="text/javascript">
     var newsFeedAnimate = false;
