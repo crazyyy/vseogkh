@@ -487,6 +487,7 @@ aside {
       text-decoration: underline;
     }
   }
+  .current-menu-item,
   .active {
     background-color: #38bbbb;
   }
@@ -2009,7 +2010,8 @@ aside .bnrs {
         border: none;
       }
       &:hover,
-      &.current-menu-item {
+      &.current-menu-item,
+      &.current-post-ancestor {
         a {
           color: #d81a3d;
         }
